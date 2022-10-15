@@ -11,7 +11,6 @@ namespace SubtitleTimeshift
         async static public Task Shift(Stream input, Stream output, TimeSpan timeSpan, Encoding encoding, int bufferSize = 1024, bool leaveOpen = false)
         {
             try {
-
                 using (var read = new StreamReader(input, encoding, false, bufferSize, leaveOpen))
                 using (var write = new StreamWriter(output, encoding, bufferSize, leaveOpen))
                 {
@@ -27,7 +26,6 @@ namespace SubtitleTimeshift
                             var end = shiftStamp(stamps[1], timeSpan);
                             outputLine = $"{start}{spacer}{end}";
                         }
-
                         await write.WriteLineAsync(outputLine);
                     }
                 }
@@ -36,7 +34,6 @@ namespace SubtitleTimeshift
                 throw e;
             }
         }
-
         static string shiftStamp(string stampText, TimeSpan timeSpan)
         {
             var numbers = stampText.Split(new[] { ':', ',', '.', '|' })
