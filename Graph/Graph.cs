@@ -13,11 +13,9 @@ namespace Graph
     public class Graph<T> : IGraph<T>
     {
         readonly Dictionary<T, IEnumerable<T>> _dict;
-
         public Graph(IEnumerable<ILink<T>> links)
         {
-            _dict = links.GroupBy(link => link.Source)
-                         .ToDictionary(g => g.Key, g => g.Select(link => link.Target));                                       
+            _dict = links.GroupBy(link => link.Source).ToDictionary(g => g.Key, g => g.Select(link => link.Target));                                       
         }
 
         public IObservable<IEnumerable<T>> RoutesBetween(T source, T target)
