@@ -36,13 +36,8 @@ namespace SubtitleTimeshift
         }
         static string shiftStamp(string stampText, TimeSpan timeSpan)
         {
-            var numbers = stampText.Split(new[] { ':', ',', '.', '|' })
-                                .Select(s => int.Parse(s))
-                                .ToArray();
-
-            var result = new TimeSpan(0, numbers[0], numbers[1], numbers[2], numbers[3])
-                                .Add(timeSpan)
-                                .ToString(@"hh\:mm\:ss\.fff");
+            var numbers = stampText.Split(new[]{ ':', ',', '.', '|' }).Select(s => int.Parse(s)).ToArray();
+            var result = new TimeSpan(0, numbers[0], numbers[1], numbers[2], numbers[3]).Add(timeSpan).ToString(@"hh\:mm\:ss\.fff");
             return result;
         }
     }
